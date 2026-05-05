@@ -1,0 +1,626 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Claude Code 설치 가이드</title>
+<style>
+  :root {
+    --bg: #f5f6f7;
+    --card: #ffffff;
+    --border: #e5e7eb;
+    --text: #111827;
+    --muted: #6b7280;
+    --pill-bg: #f3f4f6;
+    --pill-text: #374151;
+    --btn: #3B82F6;
+    --btn-hover: #2563EB;
+    --btn-text: #ffffff;
+    --btn-outline-text: #3B82F6;
+  }
+
+  * { box-sizing: border-box; }
+
+  body {
+    margin: 0;
+    padding: 48px 24px;
+    background: var(--bg);
+    color: var(--text);
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Pretendard",
+                 "Apple SD Gothic Neo", "Malgun Gothic", sans-serif;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .wrap {
+    max-width: 760px;
+    margin: 0 auto;
+  }
+
+  .page-title {
+    font-size: 28px;
+    font-weight: 700;
+    margin: 0 0 8px;
+  }
+
+  .page-sub {
+    color: var(--muted);
+    font-size: 15px;
+    margin: 0 0 24px;
+  }
+
+  /* 사전 도구 소개 */
+  .intro {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 20px 24px;
+    margin-bottom: 24px;
+  }
+
+  .intro-title {
+    font-size: 15px;
+    font-weight: 700;
+    margin: 0 0 4px;
+  }
+
+  .intro-sub {
+    font-size: 13px;
+    color: var(--muted);
+    margin: 0 0 14px;
+  }
+
+  .tool-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+  }
+
+  @media (max-width: 560px) {
+    .tool-grid { grid-template-columns: 1fr; }
+  }
+
+  .tool {
+    padding: 12px 14px;
+    background: #fafbfc;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+  }
+
+  .tool-name {
+    font-size: 13.5px;
+    font-weight: 700;
+    color: var(--text);
+    margin: 0 0 4px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+
+  .tool-name .tag {
+    font-size: 10px;
+    font-weight: 600;
+    color: #6B7280;
+    background: #F3F4F6;
+    padding: 1px 6px;
+    border-radius: 999px;
+  }
+
+  .tool-desc {
+    font-size: 12.5px;
+    color: var(--muted);
+    margin: 0;
+    line-height: 1.55;
+  }
+
+  .step {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 24px 28px;
+    margin-bottom: 16px;
+  }
+
+  .step-head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    margin-bottom: 12px;
+  }
+
+  .step-title {
+    font-size: 18px;
+    font-weight: 700;
+    margin: 0;
+  }
+
+  .pill {
+    flex-shrink: 0;
+    font-size: 12px;
+    font-weight: 500;
+    color: var(--pill-text);
+    background: var(--pill-bg);
+    border-radius: 999px;
+    padding: 4px 12px;
+    line-height: 1.4;
+  }
+
+  .step-desc {
+    color: var(--muted);
+    font-size: 14px;
+    margin: 0 0 16px;
+  }
+
+  .step-desc strong {
+    color: var(--text);
+    font-weight: 600;
+  }
+
+  .actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 13px;
+    font-weight: 500;
+    padding: 8px 14px;
+    border-radius: 6px;
+    text-decoration: none;
+    border: 1px solid var(--btn);
+    transition: opacity 0.15s ease;
+  }
+
+  .btn-filled {
+    background: var(--btn);
+    color: var(--btn-text);
+  }
+
+  .btn-filled:hover {
+    background: var(--btn-hover);
+    border-color: var(--btn-hover);
+  }
+
+  .btn-outline {
+    background: transparent;
+    color: var(--btn-outline-text);
+  }
+
+  .btn-outline:hover {
+    background: rgba(59, 130, 246, 0.08);
+  }
+
+  .btn .ext {
+    font-size: 11px;
+    opacity: 0.8;
+  }
+
+  code {
+    background: #f3f4f6;
+    padding: 2px 6px;
+    border-radius: 4px;
+    font-size: 13px;
+    font-family: "SF Mono", Menlo, Consolas, monospace;
+  }
+
+  .substep {
+    margin-top: 16px;
+    padding: 14px 16px;
+    background: #fafbfc;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+  }
+
+  .substep-title {
+    font-size: 14px;
+    font-weight: 600;
+    margin: 0 0 10px;
+    color: var(--text);
+  }
+
+  .substep ol {
+    margin: 0;
+    padding-left: 20px;
+    font-size: 13.5px;
+    color: var(--muted);
+    line-height: 1.7;
+  }
+
+  .substep ol li + li {
+    margin-top: 4px;
+  }
+
+  .substep ol code {
+    font-size: 12.5px;
+  }
+
+  .kbd {
+    display: inline-block;
+    padding: 1px 6px;
+    font-size: 11.5px;
+    font-family: "SF Mono", Menlo, Consolas, monospace;
+    color: #374151;
+    background: #ffffff;
+    border: 1px solid #d1d5db;
+    border-bottom-width: 2px;
+    border-radius: 4px;
+    line-height: 1.4;
+  }
+
+  .ext-preview {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 12px 14px;
+    margin-top: 12px;
+    background: #ffffff;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+  }
+
+  .ext-preview img {
+    width: 40px;
+    height: 40px;
+    border-radius: 6px;
+    flex-shrink: 0;
+    background: #f3f4f6;
+  }
+
+  .ext-preview-text {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    min-width: 0;
+  }
+
+  .ext-preview-name {
+    font-size: 13.5px;
+    font-weight: 600;
+    color: var(--text);
+  }
+
+  .ext-preview-pub {
+    font-size: 12px;
+    color: var(--muted);
+  }
+
+  .ext-preview-pub strong {
+    color: #3B82F6;
+    font-weight: 600;
+  }
+
+  .notice {
+    margin-top: 12px;
+    padding: 12px 14px;
+    background: #EFF6FF;
+    border: 1px solid #BFDBFE;
+    border-radius: 6px;
+    font-size: 13px;
+    color: #1E3A8A;
+    line-height: 1.6;
+  }
+
+  .notice strong { color: #1E40AF; }
+  .notice .label {
+    display: inline-block;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    color: #2563EB;
+    margin-right: 6px;
+  }
+
+  /* VS Code 확장 페이지 액션 행 시각 재현 */
+  .vsc-mock {
+    margin-top: 12px;
+    padding: 18px 20px;
+    background: #1F1F1F;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex-wrap: wrap;
+    font-family: -apple-system, "Segoe UI", system-ui, sans-serif;
+  }
+
+  .vsc-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 6px 10px 6px 14px;
+    background: #313131;
+    color: #CCCCCC;
+    font-size: 13px;
+    border-radius: 4px;
+    border: 1px solid #3C3C3C;
+    line-height: 1;
+  }
+
+  .vsc-btn .chev {
+    width: 1px;
+    height: 14px;
+    background: #5A5A5A;
+    margin: 0 2px 0 4px;
+  }
+
+  .vsc-btn .arrow {
+    color: #CCCCCC;
+    font-size: 10px;
+  }
+
+  .vsc-autoupdate {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 6px 12px;
+    border: 2px solid #3B82F6;
+    border-radius: 4px;
+    color: #CCCCCC;
+    font-size: 13px;
+    line-height: 1;
+  }
+
+  .vsc-checkbox {
+    width: 14px;
+    height: 14px;
+    border: 1px solid #6B6B6B;
+    border-radius: 2px;
+    background: #1F1F1F;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    color: #CCCCCC;
+    font-size: 11px;
+    line-height: 1;
+  }
+
+  .vsc-gear {
+    color: #9D9D9D;
+    font-size: 14px;
+    margin-left: 2px;
+  }
+
+  .vsc-caption {
+    margin-top: 8px;
+    font-size: 11.5px;
+    color: var(--muted);
+    text-align: center;
+  }
+</style>
+</head>
+<body>
+  <div class="wrap">
+    <h1 class="page-title">Claude Code 설치 가이드</h1>
+    <p class="page-sub">VS Code에서 Claude Code를 실행하기 위한 단계별 설정 안내입니다.</p>
+
+    <section class="intro">
+      <p class="intro-title">시작 전, 이 도구들이 뭔가요?</p>
+      <p class="intro-sub">설치 단계에서 등장하는 프로그램들의 역할을 한 줄로 요약했습니다.</p>
+      <div class="tool-grid">
+        <div class="tool">
+          <p class="tool-name">Node.js <span class="tag">필수</span></p>
+          <p class="tool-desc">자바스크립트 실행 환경. Claude Code가 내부적으로 Node.js 위에서 동작합니다.</p>
+        </div>
+        <div class="tool">
+          <p class="tool-name">Git <span class="tag">필수</span></p>
+          <p class="tool-desc">코드 변경 이력을 관리하는 도구. Claude Code가 변경 사항을 추적·되돌리는 데 사용합니다.</p>
+        </div>
+        <div class="tool">
+          <p class="tool-name">VS Code <span class="tag">필수</span></p>
+          <p class="tool-desc">Microsoft의 무료 코드 에디터. Claude Code 확장 프로그램이 이 위에서 실행됩니다.</p>
+        </div>
+        <div class="tool">
+          <p class="tool-name">Python <span class="tag">선택</span></p>
+          <p class="tool-desc">데이터 분석·자동화에서 가장 많이 쓰이는 프로그래밍 언어. 필수는 아니지만 미리 설치해두면 편합니다.</p>
+        </div>
+        <div class="tool">
+          <p class="tool-name">Claude Code <span class="tag">필수</span></p>
+          <p class="tool-desc">Anthropic이 만든 AI 코딩 도구. VS Code 확장으로 설치하면 채팅창에서 코드 작성·수정·실행을 맡길 수 있습니다.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 1 -->
+    <section class="step">
+      <div class="step-head">
+        <h2 class="step-title">1. Node.js 설치</h2>
+        <span class="pill">필수</span>
+      </div>
+      <p class="step-desc">
+        Claude Code는 Node.js 환경에서 실행됩니다. <strong>LTS(v18 이상)</strong> 버전을 다운로드해 설치하세요.
+      </p>
+      <div class="actions">
+        <a class="btn btn-filled" href="https://nodejs.org/" target="_blank" rel="noopener">
+          Node.js 다운로드 <span class="ext">↗</span>
+        </a>
+      </div>
+    </section>
+
+    <!-- 2 -->
+    <section class="step">
+      <div class="step-head">
+        <h2 class="step-title">2. Git 설치</h2>
+        <span class="pill">필수</span>
+      </div>
+      <p class="step-desc">
+        버전 관리를 위한 Git을 설치합니다. 설치 후 터미널에서 <code>git --version</code>으로 정상 설치를 확인하세요.
+      </p>
+      <div class="actions">
+        <a class="btn btn-filled" href="https://git-scm.com/" target="_blank" rel="noopener">
+          Git 다운로드 <span class="ext">↗</span>
+        </a>
+      </div>
+    </section>
+
+    <!-- 3 -->
+    <section class="step">
+      <div class="step-head">
+        <h2 class="step-title">3. Python 설치</h2>
+        <span class="pill">선택 단계</span>
+      </div>
+      <p class="step-desc">
+        필수는 아니지만 데이터 분석·자동화 등 폭넓게 쓰이므로 미리 설치해두면 좋습니다. 설치 시
+        <strong>"Add python.exe to PATH"</strong> 옵션을 반드시 체크하세요.
+      </p>
+      <div class="actions">
+        <a class="btn btn-filled" href="https://www.python.org/downloads/" target="_blank" rel="noopener">
+          Python 다운로드 <span class="ext">↗</span>
+        </a>
+      </div>
+    </section>
+
+    <!-- 4 -->
+    <section class="step">
+      <div class="step-head">
+        <h2 class="step-title">4. VS Code 설치</h2>
+        <span class="pill">필수</span>
+      </div>
+      <p class="step-desc">
+        Claude Code를 실행할 코드 에디터입니다. 운영체제에 맞는 설치 파일을 받아 설치하세요.
+      </p>
+      <div class="actions">
+        <a class="btn btn-filled" href="https://code.visualstudio.com/" target="_blank" rel="noopener">
+          VS Code 다운로드 <span class="ext">↗</span>
+        </a>
+      </div>
+    </section>
+
+    <!-- 5 -->
+    <section class="step">
+      <div class="step-head">
+        <h2 class="step-title">5. VS Code 환경 설정</h2>
+        <span class="pill">선택 단계</span>
+      </div>
+      <p class="step-desc">
+        한국어 언어팩과 컬러 테마를 설정하면 화면이 더 편해집니다.
+      </p>
+
+      <div class="substep">
+        <p class="substep-title">한국어 언어팩 설치</p>
+        <ol>
+          <li>VS Code 왼쪽 사이드바의 <strong>확장(Extensions)</strong> 아이콘을 클릭합니다. <span class="kbd">Ctrl</span> + <span class="kbd">Shift</span> + <span class="kbd">X</span></li>
+          <li>검색창에 <code>Korean</code>을 입력합니다.</li>
+          <li>아래와 같은 항목을 찾아 <strong>Install</strong> 버튼을 누릅니다.</li>
+        </ol>
+
+        <div class="ext-preview">
+          <img src="https://MS-CEINTL.gallerycdn.vsassets.io/extensions/ms-ceintl/vscode-language-pack-ko/latest/Microsoft.VisualStudio.Services.Icons.Default"
+               alt="Korean Language Pack for Visual Studio Code"
+               onerror="this.onerror=null;this.src='https://MS-CEINTL.gallerycdn.vsassets.io/extensions/ms-ceintl/vscode-language-pack-ko/1.118.2026050120/1777668324417/Microsoft.VisualStudio.Services.Icons.Default';" />
+          <div class="ext-preview-text">
+            <span class="ext-preview-name">Korean Language Pack for Visual Studio Code</span>
+            <span class="ext-preview-pub">제작자 <strong>Microsoft</strong></span>
+          </div>
+        </div>
+
+        <ol start="4" style="margin-top:10px;">
+          <li>오른쪽 아래 안내에 따라 <strong>Restart</strong>를 눌러 VS Code를 다시 시작합니다.</li>
+        </ol>
+      </div>
+
+      <div class="substep">
+        <p class="substep-title">컬러 테마 변경</p>
+        <ol>
+          <li>VS Code 상단 가운데 검색창을 클릭하거나 <span class="kbd">Ctrl</span> + <span class="kbd">Shift</span> + <span class="kbd">P</span>를 누릅니다.</li>
+          <li>검색창에 <code>&gt;color theme</code>를 입력하고 <strong>기본 설정: 색 테마(Preferences: Color Theme)</strong>를 선택합니다.</li>
+          <li>방향키 ↑↓로 미리보기를 확인하고 마음에 드는 테마에서 <span class="kbd">Enter</span>를 눌러 적용합니다.</li>
+        </ol>
+      </div>
+    </section>
+
+    <!-- 6 -->
+    <section class="step">
+      <div class="step-head">
+        <h2 class="step-title">6. Claude Code 설치</h2>
+        <span class="pill">필수</span>
+      </div>
+      <p class="step-desc">
+        VS Code 확장 프로그램으로 Claude Code를 설치합니다.
+      </p>
+
+      <div class="substep">
+        <p class="substep-title">확장 프로그램 설치</p>
+        <ol>
+          <li>VS Code 왼쪽 사이드바의 <strong>확장(Extensions)</strong> 아이콘을 클릭합니다. <span class="kbd">Ctrl</span> + <span class="kbd">Shift</span> + <span class="kbd">X</span></li>
+          <li>검색창에 <code>Claude Code</code>를 입력합니다.</li>
+          <li>아래와 같은 항목을 찾아 <strong>Install</strong> 버튼을 누릅니다.</li>
+        </ol>
+
+        <div class="ext-preview">
+          <img src="https://anthropic.gallerycdn.vsassets.io/extensions/anthropic/claude-code/latest/Microsoft.VisualStudio.Services.Icons.Default"
+               alt="Claude Code for VS Code"
+               onerror="this.onerror=null;this.src='https://anthropic.gallerycdn.vsassets.io/extensions/anthropic/claude-code/2.1.128/1777935814013/Microsoft.VisualStudio.Services.Icons.Default';" />
+          <div class="ext-preview-text">
+            <span class="ext-preview-name">Claude Code for VS Code</span>
+            <span class="ext-preview-pub">제작자 <strong>Anthropic</strong></span>
+          </div>
+        </div>
+
+        <ol start="4" style="margin-top:10px;">
+          <li>설치가 끝나면 확장 페이지에서 <strong>자동 업데이트</strong> 체크박스를 켜둡니다. (아래 안내 참고)</li>
+          <li>설치가 끝나면 VS Code 오른쪽에 Claude Code 패널이 자동으로 열립니다.</li>
+        </ol>
+
+        <div class="notice">
+          <span class="label">중요</span>
+          Claude Code는 업데이트가 잦습니다. 확장 상세 페이지에서 아래 표시된
+          <strong>자동 업데이트</strong> 체크박스를 반드시 켜두세요.
+          꺼져 있으면 구버전에 머물러 일부 기능이 동작하지 않을 수 있습니다.
+
+          <div class="vsc-mock">
+            <span class="vsc-btn">사용 안 함<span class="chev"></span><span class="arrow">▾</span></span>
+            <span class="vsc-btn">제거<span class="chev"></span><span class="arrow">▾</span></span>
+            <span class="vsc-autoupdate">
+              <span class="vsc-checkbox">✓</span>
+              자동 업데이트
+              <span class="vsc-gear">⚙</span>
+            </span>
+          </div>
+          <div class="vsc-caption">↑ 확장 상세 페이지에서 이 영역을 찾으세요</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 7 -->
+    <section class="step">
+      <div class="step-head">
+        <h2 class="step-title">7. Claude Code 실행 및 계정 연결</h2>
+        <span class="pill">마지막</span>
+      </div>
+      <p class="step-desc">
+        설치한 확장 프로그램에서 Claude Code 패널을 열고 Claude 계정으로 로그인합니다.
+      </p>
+
+      <div class="substep">
+        <p class="substep-title">Claude Code 패널 열기</p>
+        <ol>
+          <li>VS Code 오른쪽 위 또는 사이드바에 생긴 <strong>Claude</strong> 아이콘을 클릭합니다.</li>
+          <li>패널이 열리지 않는다면 <span class="kbd">Ctrl</span> + <span class="kbd">Shift</span> + <span class="kbd">P</span>를 누르고
+              <code>&gt;Claude Code: Open</code>을 검색해 실행합니다.</li>
+        </ol>
+      </div>
+
+      <div class="substep">
+        <p class="substep-title">Claude 계정 연결</p>
+        <ol>
+          <li>패널에 표시된 <strong>Sign in with Claude</strong>(또는 <strong>로그인</strong>) 버튼을 누릅니다.</li>
+          <li>브라우저가 열리면 Claude 계정으로 로그인하고 권한을 승인합니다.</li>
+          <li>인증이 완료되면 VS Code로 자동 복귀하며, 패널에 입력창이 활성화됩니다.</li>
+          <li>입력창에 첫 메시지를 보내 정상 작동을 확인합니다.</li>
+        </ol>
+      </div>
+
+      <div class="actions" style="margin-top:16px;">
+        <a class="btn btn-outline" href="https://docs.claude.com/en/docs/claude-code/quickstart" target="_blank" rel="noopener">
+          공식 사용 가이드 <span class="ext">↗</span>
+        </a>
+      </div>
+    </section>
+  </div>
+</body>
+</html>
