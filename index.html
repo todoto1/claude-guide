@@ -391,6 +391,93 @@
     color: var(--muted);
     text-align: center;
   }
+
+  /* 확장 패널 로그인 화면 시각 재현 */
+  .login-panel {
+    margin-top: 12px;
+    padding: 18px 18px 14px;
+    background: #F5F5F5;
+    border: 1px solid #E5E7EB;
+    border-radius: 8px;
+    max-width: 320px;
+    font-family: -apple-system, "Segoe UI", system-ui, sans-serif;
+  }
+
+  .login-title {
+    font-size: 14px;
+    font-weight: 600;
+    color: #1F2937;
+    margin: 0 0 8px;
+  }
+
+  .login-desc {
+    font-size: 12.5px;
+    color: #4B5563;
+    margin: 0 0 12px;
+    line-height: 1.55;
+  }
+
+  .login-q {
+    font-size: 12.5px;
+    color: #4B5563;
+    margin: 0 0 10px;
+  }
+
+  .login-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    width: 100%;
+    font-size: 13px;
+    padding: 8px 12px;
+    border-radius: 4px;
+    border: 1px solid transparent;
+    line-height: 1.3;
+    text-align: center;
+  }
+
+  .login-btn.primary {
+    background: #C2410C;
+    color: #ffffff;
+    font-weight: 600;
+  }
+
+  .login-btn.outline {
+    background: #ffffff;
+    color: #1F2937;
+    border-color: #D1D5DB;
+  }
+
+  .login-btn .ext {
+    font-size: 10px;
+    opacity: 0.8;
+  }
+
+  .login-caption {
+    font-size: 11.5px;
+    color: #6B7280;
+    margin: 6px 0 12px;
+    line-height: 1.5;
+  }
+
+  .login-caption:last-child { margin-bottom: 0; }
+
+  .login-foot {
+    margin-top: 10px;
+    padding-top: 12px;
+    border-top: 1px solid #E5E7EB;
+    font-size: 11.5px;
+    color: #6B7280;
+    text-align: center;
+    line-height: 1.5;
+  }
+
+  .login-foot code {
+    background: #E5E7EB;
+    font-size: 11.5px;
+    padding: 1px 5px;
+  }
 </style>
 </head>
 <body>
@@ -607,12 +694,41 @@
 
       <div class="substep">
         <p class="substep-title">Claude 계정 연결</p>
-        <ol>
-          <li>패널에 표시된 <strong>Sign in with Claude</strong>(또는 <strong>로그인</strong>) 버튼을 누릅니다.</li>
+        <p style="font-size:13.5px; color: var(--muted); margin:0 0 4px; line-height:1.7;">
+          패널이 처음 열리면 아래와 같은 로그인 화면이 표시됩니다.
+          <strong style="color: var(--text);">Claude Pro·Team·Enterprise 구독자라면 맨 위 주황색 <em>Claude.ai Subscription</em> 버튼</strong>을 누르세요.
+        </p>
+
+        <div class="login-panel">
+          <p class="login-title">Welcome to Claude Code</p>
+          <p class="login-desc">Claude Code can be used with your Claude subscription or billed based on API usage through your Console account.</p>
+          <p class="login-q">How do you want to log in?</p>
+
+          <div class="login-btn primary">Claude.ai Subscription</div>
+          <p class="login-caption">Use your Claude Pro, Team, or Enterprise subscription</p>
+
+          <div class="login-btn outline">Anthropic Console</div>
+          <p class="login-caption">Pay for API usage through your Console account</p>
+
+          <div class="login-btn outline">Bedrock, Foundry, or Vertex <span class="ext">↗</span></div>
+          <p class="login-caption">Instructions on how to use API keys or third-party providers.</p>
+
+          <div class="login-foot">Prefer the terminal experience? Run <code>claude</code> in terminal</div>
+        </div>
+        <div class="vsc-caption" style="text-align:left;">↑ 확장 패널에 처음 표시되는 로그인 화면</div>
+
+        <ol style="margin-top:14px;">
+          <li>맨 위 <strong>Claude.ai Subscription</strong>(주황색) 버튼을 누릅니다.</li>
           <li>브라우저가 열리면 Claude 계정으로 로그인하고 권한을 승인합니다.</li>
           <li>인증이 완료되면 VS Code로 자동 복귀하며, 패널에 입력창이 활성화됩니다.</li>
           <li>입력창에 첫 메시지를 보내 정상 작동을 확인합니다.</li>
         </ol>
+
+        <div class="notice">
+          <span class="label">참고</span>
+          <strong>Anthropic Console</strong>은 API 사용량 기반 과금이고, <strong>Bedrock/Foundry/Vertex</strong>는 AWS·Azure·GCP를 통한 기업 인증 방식입니다.
+          개인 구독자라면 첫 번째 옵션이면 충분합니다.
+        </div>
       </div>
 
       <div class="actions" style="margin-top:16px;">
