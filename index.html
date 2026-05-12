@@ -315,6 +315,161 @@
     margin-right: 6px;
   }
 
+  /* 스크린샷 위 핫스팟 안내 박스 */
+  .screenshot-guide {
+    position: relative;
+    margin: 16px 0;
+    border: 1px solid #E5E7EB;
+    border-radius: 8px;
+    overflow: hidden;
+    background: #F9FAFB;
+    max-width: 880px;
+  }
+  .screenshot-guide img {
+    display: block; width: 100%; height: auto;
+  }
+  .screenshot-guide .img-placeholder {
+    padding: 60px 24px;
+    text-align: center;
+    color: #6B7280;
+    font-size: 13.5px;
+    background: repeating-linear-gradient(45deg, #F9FAFB, #F9FAFB 10px, #F3F4F6 10px, #F3F4F6 20px);
+  }
+  .screenshot-guide .img-placeholder code {
+    background: #fff;
+    padding: 2px 6px;
+    border-radius: 4px;
+    border: 1px solid #E5E7EB;
+    font-size: 12px;
+  }
+  /* todoto SNS hotspot-box 패턴 — 점선 + pulse + pill badge */
+  .hotspot {
+    position: absolute;
+    border: 2.5px dashed #EF4444;
+    background: rgba(239, 68, 68, 0.08);
+    border-radius: 6px;
+    cursor: pointer;
+    z-index: 10;
+    animation: hotspot-pulse 1.6s infinite;
+    text-decoration: none;
+  }
+  .hotspot:hover {
+    background: rgba(239, 68, 68, 0.18);
+    filter: brightness(0.95);
+  }
+  @keyframes hotspot-pulse {
+    0%   { box-shadow: 0 0 0 0 rgba(239, 68, 68, 0.55); }
+    70%  { box-shadow: 0 0 0 10px transparent; }
+    100% { box-shadow: 0 0 0 0 transparent; }
+  }
+  /* 번호 배지 — 좌상단 원형 */
+  .hotspot-num {
+    position: absolute;
+    top: -12px; left: -10px;
+    width: 24px; height: 24px;
+    background: #EF4444; color: #fff;
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 12px; font-weight: 700;
+    box-shadow: 0 2px 6px rgba(239, 68, 68, 0.45);
+    z-index: 2;
+  }
+  /* pill 라벨 — 우상단 또는 좌하단 */
+  .hotspot-label {
+    position: absolute;
+    top: -14px; right: -8px;
+    background: #EF4444; color: #fff;
+    padding: 3px 10px;
+    border-radius: 12px;
+    font-size: 11px; font-weight: 700;
+    white-space: nowrap;
+    box-shadow: 0 2px 8px rgba(239, 68, 68, 0.45);
+    letter-spacing: 0.3px;
+    pointer-events: none;
+    z-index: 2;
+  }
+  .hotspot.bottom .hotspot-label {
+    top: auto; right: auto;
+    bottom: -14px; left: -4px;
+  }
+
+  /* 위쪽 hotspot: 「환경에서」 셀렉터 영역 (상단) */
+  .hotspot-os-top {
+    top: 8.69%; left: 21.97%;
+    width: 16.27%; height: 6.69%;
+  }
+  /* 아래쪽 hotspot: 「아키텍처가 실행 중인 macOS」 셀렉터 (하단) */
+  .hotspot-os-bottom {
+    top: 80.18%; left: 27.52%;
+    width: 13.94%; height: 8.94%;
+  }
+  @media (max-width: 700px) {
+    .hotspot-label { font-size: 10.5px; padding: 4px 7px; }
+    .hotspot-num { width: 22px; height: 22px; font-size: 11px; top: -11px; left: -11px; }
+  }
+
+  /* 핫스팟 픽 모드 (?pick=1 진입 시) — 드래그·리사이즈로 좌표 조정 */
+  body.pick-mode .hotspot {
+    cursor: move;
+    border-color: #DC2626;
+    background: rgba(220, 38, 38, 0.12);
+    animation: none;
+  }
+  body.pick-mode .hotspot:hover { background: rgba(220, 38, 38, 0.22); }
+  body.pick-mode .hotspot .resize-handle {
+    position: absolute;
+    width: 14px; height: 14px;
+    right: -7px; bottom: -7px;
+    background: #DC2626;
+    border: 2px solid #fff;
+    border-radius: 50%;
+    cursor: nwse-resize;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.3);
+  }
+  .resize-handle { display: none; }
+  body.pick-mode .resize-handle { display: block; }
+  #pick-panel {
+    position: fixed;
+    top: 16px; right: 16px;
+    background: #111827;
+    color: #E5E7EB;
+    padding: 14px 16px;
+    border-radius: 10px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.4);
+    z-index: 9999;
+    font-family: ui-monospace, Menlo, Consolas, monospace;
+    font-size: 12px;
+    min-width: 320px;
+    display: none;
+  }
+  body.pick-mode #pick-panel { display: block; }
+  #pick-panel h4 {
+    margin: 0 0 10px; font-size: 13px; color: #FCA5A5;
+    font-family: ui-sans-serif, system-ui, sans-serif;
+  }
+  #pick-panel .pick-row {
+    display: flex; justify-content: space-between; gap: 8px;
+    padding: 4px 0; border-bottom: 1px dashed #374151;
+  }
+  #pick-panel .pick-row:last-of-type { border-bottom: none; margin-bottom: 8px; }
+  #pick-panel .pick-name { color: #9CA3AF; }
+  #pick-panel .pick-val { color: #FCA5A5; font-weight: 700; }
+  #pick-panel button {
+    width: 100%;
+    padding: 8px 12px;
+    background: #DC2626; color: #fff;
+    border: none; border-radius: 6px;
+    font-size: 12px; font-weight: 700;
+    cursor: pointer; margin-top: 4px;
+    font-family: inherit;
+  }
+  #pick-panel button:hover { background: #B91C1C; }
+  #pick-panel .pick-hint {
+    margin-top: 8px; font-size: 11px;
+    color: #9CA3AF; line-height: 1.5;
+    font-family: ui-sans-serif, system-ui, sans-serif;
+  }
+
   /* VS Code 확장 페이지 액션 행 시각 재현 */
   .vsc-mock {
     margin-top: 12px;
@@ -570,8 +725,167 @@
       <p class="step-desc">
         Claude Code는 Node.js 환경에서 실행됩니다. <strong>LTS(v18 이상)</strong> 버전을 다운로드해 설치하세요.
       </p>
+      <div class="notice">
+        <span class="label">⚠ 확인</span>
+        다운로드 페이지에서 아래 <strong>1번</strong> 또는 <strong>2번</strong> 위치를 클릭해
+        <strong>본인 OS(Windows / macOS / Linux)와 CPU 아키텍처(x64 / arm64 등)에 맞게 선택</strong>해 받으세요.
+        기본값이 본인 환경과 다를 수 있어 그대로 받으면 설치가 안 됩니다.
+      </div>
+
+      <div class="screenshot-guide">
+        <img src="images/nodejs-download.png" alt="Node.js 다운로드 페이지 — 환경 선택 위치"
+             onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+        <div class="img-placeholder" style="display:none;">
+          <p style="margin:0 0 10px;">📸 안내 이미지가 아직 준비되지 않았습니다.</p>
+          <p style="margin:0; font-size:12px;">
+            Node.js 다운로드 페이지 스크린샷을
+            <code>images/nodejs-download.png</code> 경로에 저장하세요.
+          </p>
+        </div>
+        <a class="hotspot hotspot-os-top" data-pick-name="hotspot-os-top" href="https://nodejs.org/ko/download" target="_blank" rel="noopener" title="여기 클릭 → Node.js 다운로드 페이지에서 OS 선택">
+          <span class="hotspot-num">1</span>
+          <span class="hotspot-label">상단: 「○○ 환경에서」 — OS 선택</span>
+          <span class="resize-handle" data-resize="1"></span>
+        </a>
+        <a class="hotspot hotspot-os-bottom" data-pick-name="hotspot-os-bottom" href="https://nodejs.org/ko/download" target="_blank" rel="noopener" title="여기 클릭 → 미리 빌드된 Node.js 직접 다운로드">
+          <span class="hotspot-num">2</span>
+          <span class="hotspot-label">하단: OS + 아키텍처 선택해 직접 다운로드</span>
+          <span class="resize-handle" data-resize="1"></span>
+        </a>
+      </div>
+
+      <!-- 픽 모드 패널 — ?pick=1 진입 시만 노출 -->
+      <div id="pick-panel">
+        <h4>🎯 핫스팟 픽 모드</h4>
+        <div id="pick-coords"></div>
+        <button id="pick-copy">CSS 복사 (양쪽 모두)</button>
+        <div class="pick-hint">
+          • 박스 드래그 → 이동<br>
+          • 우하단 빨강 점 드래그 → 크기 조절<br>
+          • Esc 또는 ?pick=0 → 종료
+        </div>
+      </div>
+
+      <script>
+        (function() {
+          if (!new URLSearchParams(location.search).has("pick")) return;
+          if (new URLSearchParams(location.search).get("pick") === "0") return;
+          document.body.classList.add("pick-mode");
+          const panel = document.getElementById("pick-coords");
+          const hotspots = document.querySelectorAll(".screenshot-guide .hotspot");
+          const guide = document.querySelector(".screenshot-guide");
+
+          function readPct(el) {
+            const r = el.getBoundingClientRect();
+            const g = guide.getBoundingClientRect();
+            return {
+              top: ((r.top - g.top) / g.height * 100),
+              left: ((r.left - g.left) / g.width * 100),
+              width: (r.width / g.width * 100),
+              height: (r.height / g.height * 100),
+            };
+          }
+          function applyPct(el, p) {
+            el.style.top = p.top.toFixed(2) + "%";
+            el.style.left = p.left.toFixed(2) + "%";
+            el.style.width = p.width.toFixed(2) + "%";
+            el.style.height = p.height.toFixed(2) + "%";
+          }
+          function refresh() {
+            const parts = [];
+            hotspots.forEach(h => {
+              const p = readPct(h);
+              const name = h.dataset.pickName;
+              parts.push(
+                `<div class="pick-row"><span class="pick-name">${name}</span></div>` +
+                `<div class="pick-row"><span class="pick-name">top</span><span class="pick-val">${p.top.toFixed(2)}%</span></div>` +
+                `<div class="pick-row"><span class="pick-name">left</span><span class="pick-val">${p.left.toFixed(2)}%</span></div>` +
+                `<div class="pick-row"><span class="pick-name">width</span><span class="pick-val">${p.width.toFixed(2)}%</span></div>` +
+                `<div class="pick-row"><span class="pick-name">height</span><span class="pick-val">${p.height.toFixed(2)}%</span></div>`
+              );
+            });
+            panel.innerHTML = parts.join("");
+          }
+
+          let dragState = null;
+          function startDrag(e, hot, mode) {
+            e.preventDefault();
+            e.stopPropagation();
+            const start = readPct(hot);
+            const g = guide.getBoundingClientRect();
+            dragState = { hot, mode, start, startX: e.clientX, startY: e.clientY, g };
+          }
+          document.addEventListener("mousemove", e => {
+            if (!dragState) return;
+            const { hot, mode, start, startX, startY, g } = dragState;
+            const dx = (e.clientX - startX) / g.width * 100;
+            const dy = (e.clientY - startY) / g.height * 100;
+            if (mode === "move") {
+              applyPct(hot, {
+                top: Math.max(0, Math.min(100 - start.height, start.top + dy)),
+                left: Math.max(0, Math.min(100 - start.width, start.left + dx)),
+                width: start.width, height: start.height,
+              });
+            } else if (mode === "resize") {
+              applyPct(hot, {
+                top: start.top, left: start.left,
+                width: Math.max(2, Math.min(100 - start.left, start.width + dx)),
+                height: Math.max(2, Math.min(100 - start.top, start.height + dy)),
+              });
+            }
+            refresh();
+          });
+          document.addEventListener("mouseup", () => { dragState = null; });
+
+          hotspots.forEach(hot => {
+            // 핫스팟 본체는 <a> — 클릭 시 링크 열림 방지
+            hot.addEventListener("click", e => { e.preventDefault(); });
+            hot.addEventListener("mousedown", e => {
+              if (e.target.dataset.resize === "1") {
+                startDrag(e, hot, "resize");
+              } else {
+                startDrag(e, hot, "move");
+              }
+            });
+          });
+
+          document.addEventListener("keydown", e => {
+            if (e.key === "Escape") {
+              document.body.classList.remove("pick-mode");
+            }
+          });
+
+          document.getElementById("pick-copy").addEventListener("click", async () => {
+            const css = [];
+            hotspots.forEach(h => {
+              const p = readPct(h);
+              css.push(
+                `.${h.dataset.pickName} {\n` +
+                `  top: ${p.top.toFixed(2)}%;\n` +
+                `  left: ${p.left.toFixed(2)}%;\n` +
+                `  width: ${p.width.toFixed(2)}%;\n` +
+                `  height: ${p.height.toFixed(2)}%;\n` +
+                `}`
+              );
+            });
+            const text = css.join("\n");
+            try {
+              await navigator.clipboard.writeText(text);
+              alert("CSS 복사됨!\n\n" + text);
+            } catch (err) {
+              prompt("복사용 CSS (Ctrl+C):", text);
+            }
+          });
+
+          // 이미지 로드 후 좌표 갱신
+          const img = document.querySelector(".screenshot-guide img");
+          if (img && img.complete) refresh();
+          else if (img) img.addEventListener("load", refresh);
+          else refresh();
+        })();
+      </script>
       <div class="actions">
-        <a class="btn btn-filled" href="https://nodejs.org/" target="_blank" rel="noopener">
+        <a class="btn btn-filled" href="https://nodejs.org/ko/download" target="_blank" rel="noopener">
           Node.js 다운로드 <span class="ext">↗</span>
         </a>
       </div>
@@ -620,16 +934,17 @@
         <span class="pill">필수</span>
       </div>
       <p class="step-desc win-only">
-        Claude Code를 실행할 코드 에디터입니다. <strong>인스톨러(.exe)</strong>를 실행하면 설치 마법사가 진행됩니다.
-        "Add to PATH" 옵션은 기본 체크되어 있으니 그대로 두고 진행하세요.
+        Claude Code를 실행할 코드 에디터입니다. <strong>인스톨러(.exe)</strong> 실행 시
+        <strong>"Add to PATH"</strong> 옵션은 반드시 체크 후 진행해주세요.
       </p>
       <p class="step-desc mac-only">
-        Claude Code를 실행할 코드 에디터입니다. 다운로드한 <strong>.zip</strong> 파일을 더블클릭해 압축을 풀고,
-        <strong>Visual Studio Code.app</strong>을 <strong>Applications</strong> 폴더로 드래그하면 설치 완료입니다.
-        (Apple Silicon / Intel 칩셋에 맞는 파일을 받으세요)
+        Claude Code를 실행할 코드 에디터입니다. 다운로드 페이지에서
+        <strong>Apple Silicon / Intel</strong> 칩셋에 맞는 <strong>.zip</strong> 파일을 받아
+        압축을 풀고 <strong>Visual Studio Code.app</strong>을 <strong>Applications</strong> 폴더로
+        드래그하면 설치 완료입니다.
       </p>
       <div class="actions">
-        <a class="btn btn-filled" href="https://code.visualstudio.com/" target="_blank" rel="noopener">
+        <a class="btn btn-filled" href="https://code.visualstudio.com/Download" target="_blank" rel="noopener">
           VS Code 다운로드 <span class="ext">↗</span>
         </a>
       </div>
