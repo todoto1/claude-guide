@@ -691,27 +691,27 @@
 
     <section class="intro">
       <p class="intro-title">시작 전, 이 도구들이 뭔가요?</p>
-      <p class="intro-sub">설치 단계에서 등장하는 프로그램들의 역할을 한 줄로 요약했습니다.</p>
+      <p class="intro-sub"><strong style="color: var(--text);">핵심은 VS Code + Claude Code 확장 두 가지면 충분합니다.</strong> 나머지는 보조 도구로, 미리 받아두면 더 풍부하게 쓸 수 있습니다.</p>
       <div class="tool-grid">
-        <div class="tool">
-          <p class="tool-name">Node.js <span class="tag">필수</span></p>
-          <p class="tool-desc">자바스크립트 실행 환경. Claude Code가 내부적으로 Node.js 위에서 동작합니다.</p>
-        </div>
-        <div class="tool">
-          <p class="tool-name">Git <span class="tag">필수</span></p>
-          <p class="tool-desc">코드 변경 이력을 관리하는 도구. Claude Code가 변경 사항을 추적·되돌리는 데 사용합니다.</p>
-        </div>
         <div class="tool">
           <p class="tool-name">VS Code <span class="tag">필수</span></p>
           <p class="tool-desc">Microsoft의 무료 코드 에디터. Claude Code 확장 프로그램이 이 위에서 실행됩니다.</p>
         </div>
         <div class="tool">
-          <p class="tool-name">Python <span class="tag">선택</span></p>
-          <p class="tool-desc">데이터 분석·자동화에서 가장 많이 쓰이는 프로그래밍 언어. 필수는 아니지만 미리 설치해두면 편합니다.</p>
-        </div>
-        <div class="tool">
           <p class="tool-name">Claude Code <span class="tag">필수</span></p>
           <p class="tool-desc">Anthropic이 만든 AI 코딩 도구. VS Code 확장으로 설치하면 채팅창에서 코드 작성·수정·실행을 맡길 수 있습니다.</p>
+        </div>
+        <div class="tool">
+          <p class="tool-name">Node.js <span class="tag">선택</span></p>
+          <p class="tool-desc">자바스크립트 실행 환경. 일부 명령어·기능을 쓸 때 필요합니다. 미리 받아두면 매끄러움.</p>
+        </div>
+        <div class="tool">
+          <p class="tool-name">Git <span class="tag">선택</span></p>
+          <p class="tool-desc">코드 변경 이력 관리 도구. 있으면 Claude가 변경을 추적·되돌리는 기능을 함께 활용할 수 있습니다.</p>
+        </div>
+        <div class="tool">
+          <p class="tool-name">Python <span class="tag">선택</span></p>
+          <p class="tool-desc">데이터 분석·자동화에서 가장 많이 쓰이는 프로그래밍 언어. 미리 설치해두면 편합니다.</p>
         </div>
       </div>
     </section>
@@ -719,11 +719,200 @@
     <!-- 1 -->
     <section class="step">
       <div class="step-head">
-        <h2 class="step-title">1. Node.js 설치</h2>
+        <h2 class="step-title">1. VS Code 설치</h2>
+        <span class="pill">필수</span>
+      </div>
+      <p class="step-desc win-only">
+        Claude Code를 실행할 코드 에디터입니다. <strong>인스톨러(.exe)</strong> 실행 시
+        <strong>"Add to PATH"</strong> 옵션은 반드시 체크 후 진행해주세요.
+      </p>
+      <p class="step-desc mac-only">
+        Claude Code를 실행할 코드 에디터입니다. 다운로드 페이지에서
+        <strong>Apple Silicon / Intel</strong> 칩셋에 맞는 <strong>.zip</strong> 파일을 받아
+        압축을 풀고 <strong>Visual Studio Code.app</strong>을 <strong>Applications</strong> 폴더로
+        드래그하면 설치 완료입니다.
+      </p>
+      <div class="actions">
+        <a class="btn btn-filled" href="https://code.visualstudio.com/Download" target="_blank" rel="noopener">
+          VS Code 다운로드 <span class="ext">↗</span>
+        </a>
+      </div>
+    </section>
+
+    <!-- 2 -->
+    <section class="step">
+      <div class="step-head">
+        <h2 class="step-title">2. VS Code 환경 설정</h2>
+        <span class="pill">선택 단계</span>
+      </div>
+      <p class="step-desc">
+        한국어 언어팩과 컬러 테마를 설정하면 화면이 더 편해집니다.
+      </p>
+
+      <div class="substep">
+        <p class="substep-title">한국어 언어팩 설치</p>
+        <ol>
+          <li>VS Code 왼쪽 사이드바의 <strong>확장(Extensions)</strong> 아이콘을 클릭합니다. <span class="win-only"><span class="kbd">Ctrl</span></span><span class="mac-only"><span class="kbd">Cmd</span></span> + <span class="kbd">Shift</span> + <span class="kbd">X</span></li>
+          <li>검색창에 <code>Korean</code>을 입력합니다.</li>
+          <li>아래와 같은 항목을 찾아 <strong>Install</strong> 버튼을 누릅니다.</li>
+        </ol>
+
+        <div class="ext-preview">
+          <img src="https://MS-CEINTL.gallerycdn.vsassets.io/extensions/ms-ceintl/vscode-language-pack-ko/latest/Microsoft.VisualStudio.Services.Icons.Default"
+               alt="Korean Language Pack for Visual Studio Code"
+               onerror="this.onerror=null;this.src='https://MS-CEINTL.gallerycdn.vsassets.io/extensions/ms-ceintl/vscode-language-pack-ko/1.118.2026050120/1777668324417/Microsoft.VisualStudio.Services.Icons.Default';" />
+          <div class="ext-preview-text">
+            <span class="ext-preview-name">Korean Language Pack for Visual Studio Code</span>
+            <span class="ext-preview-pub">제작자 <strong>Microsoft</strong></span>
+          </div>
+        </div>
+
+        <ol start="4" style="margin-top:10px;">
+          <li>오른쪽 아래 안내에 따라 <strong>Restart</strong>를 눌러 VS Code를 다시 시작합니다.</li>
+        </ol>
+      </div>
+
+      <div class="substep">
+        <p class="substep-title">컬러 테마 변경</p>
+        <ol>
+          <li>VS Code 상단 가운데 검색창을 클릭하거나 <span class="win-only"><span class="kbd">Ctrl</span></span><span class="mac-only"><span class="kbd">Cmd</span></span> + <span class="kbd">Shift</span> + <span class="kbd">P</span>를 누릅니다.</li>
+          <li>검색창에 <code>&gt;color theme</code>를 입력하고 <strong>기본 설정: 색 테마(Preferences: Color Theme)</strong>를 선택합니다.</li>
+          <li>방향키 ↑↓로 미리보기를 확인하고 마음에 드는 테마에서 <span class="kbd">Enter</span>를 눌러 적용합니다.</li>
+        </ol>
+      </div>
+    </section>
+
+    <!-- 3 -->
+    <section class="step">
+      <div class="step-head">
+        <h2 class="step-title">3. Claude Code 설치</h2>
         <span class="pill">필수</span>
       </div>
       <p class="step-desc">
-        Claude Code는 Node.js 환경에서 실행됩니다. <strong>LTS(v18 이상)</strong> 버전을 다운로드해 설치하세요.
+        VS Code 확장 프로그램으로 Claude Code를 설치합니다.
+      </p>
+
+      <div class="substep">
+        <p class="substep-title">확장 프로그램 설치</p>
+        <ol>
+          <li>VS Code 왼쪽 사이드바의 <strong>확장(Extensions)</strong> 아이콘을 클릭합니다. <span class="win-only"><span class="kbd">Ctrl</span></span><span class="mac-only"><span class="kbd">Cmd</span></span> + <span class="kbd">Shift</span> + <span class="kbd">X</span></li>
+          <li>검색창에 <code>Claude Code</code>를 입력합니다.</li>
+          <li>아래와 같은 항목을 찾아 <strong>Install</strong> 버튼을 누릅니다.</li>
+        </ol>
+
+        <div class="ext-preview">
+          <img src="https://anthropic.gallerycdn.vsassets.io/extensions/anthropic/claude-code/latest/Microsoft.VisualStudio.Services.Icons.Default"
+               alt="Claude Code for VS Code"
+               onerror="this.onerror=null;this.src='https://anthropic.gallerycdn.vsassets.io/extensions/anthropic/claude-code/2.1.128/1777935814013/Microsoft.VisualStudio.Services.Icons.Default';" />
+          <div class="ext-preview-text">
+            <span class="ext-preview-name">Claude Code for VS Code</span>
+            <span class="ext-preview-pub">제작자 <strong>Anthropic</strong></span>
+          </div>
+        </div>
+
+        <ol start="4" style="margin-top:10px;">
+          <li>설치가 끝나면 확장 페이지에서 <strong>자동 업데이트</strong> 체크박스를 켜둡니다. (아래 안내 참고)</li>
+          <li>설치가 끝나면 VS Code 오른쪽에 Claude Code 패널이 자동으로 열립니다.</li>
+        </ol>
+
+        <div class="notice">
+          <span class="label">중요</span>
+          Claude Code는 업데이트가 잦습니다. 확장 상세 페이지에서 아래 표시된
+          <strong>자동 업데이트</strong> 체크박스를 반드시 켜두세요.
+          꺼져 있으면 구버전에 머물러 일부 기능이 동작하지 않을 수 있습니다.
+
+          <div class="vsc-mock">
+            <span class="vsc-btn">사용 안 함<span class="chev"></span><span class="arrow">▾</span></span>
+            <span class="vsc-btn">제거<span class="chev"></span><span class="arrow">▾</span></span>
+            <span class="vsc-autoupdate">
+              <span class="vsc-checkbox">✓</span>
+              자동 업데이트
+              <span class="vsc-gear">⚙</span>
+            </span>
+          </div>
+          <div class="vsc-caption">↑ 확장 상세 페이지에서 이 영역을 찾으세요</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 4 -->
+    <section class="step">
+      <div class="step-head">
+        <h2 class="step-title">4. Claude Code 실행 및 계정 연결</h2>
+        <span class="pill">필수</span>
+      </div>
+      <p class="step-desc">
+        설치한 확장 프로그램에서 Claude Code 패널을 열고 Claude 계정으로 로그인합니다.
+      </p>
+
+      <div class="substep">
+        <p class="substep-title">Claude Code 패널 열기</p>
+        <ol>
+          <li>VS Code 오른쪽 위 또는 사이드바에 생긴 <strong>Claude</strong> 아이콘을 클릭합니다.</li>
+          <li>패널이 열리지 않는다면 <span class="win-only"><span class="kbd">Ctrl</span></span><span class="mac-only"><span class="kbd">Cmd</span></span> + <span class="kbd">Shift</span> + <span class="kbd">P</span>를 누르고
+              <code>&gt;Claude Code: Open</code>을 검색해 실행합니다.</li>
+        </ol>
+      </div>
+
+      <div class="substep">
+        <p class="substep-title">Claude 계정 연결</p>
+        <p style="font-size:13.5px; color: var(--muted); margin:0 0 4px; line-height:1.7;">
+          패널이 처음 열리면 아래와 같은 로그인 화면이 표시됩니다.
+          <strong style="color: var(--text);">Claude Pro·Team·Enterprise 구독자라면 맨 위 주황색 <em>Claude.ai Subscription</em> 버튼</strong>을 누르세요.
+        </p>
+
+        <div class="login-panel">
+          <p class="login-title">Welcome to Claude Code</p>
+          <p class="login-desc">Claude Code can be used with your Claude subscription or billed based on API usage through your Console account.</p>
+          <p class="login-q">How do you want to log in?</p>
+
+          <div class="login-btn primary">Claude.ai Subscription</div>
+          <p class="login-caption">Use your Claude Pro, Team, or Enterprise subscription</p>
+
+          <div class="login-btn outline">Anthropic Console</div>
+          <p class="login-caption">Pay for API usage through your Console account</p>
+
+          <div class="login-btn outline">Bedrock, Foundry, or Vertex <span class="ext">↗</span></div>
+          <p class="login-caption">Instructions on how to use API keys or third-party providers.</p>
+
+          <div class="login-foot">Prefer the terminal experience? Run <code>claude</code> in terminal</div>
+        </div>
+        <div class="vsc-caption" style="text-align:left;">↑ 확장 패널에 처음 표시되는 로그인 화면</div>
+
+        <ol style="margin-top:14px;">
+          <li>맨 위 <strong>Claude.ai Subscription</strong>(주황색) 버튼을 누릅니다.</li>
+          <li>브라우저가 열리면 Claude 계정으로 로그인하고 권한을 승인합니다.</li>
+          <li>인증이 완료되면 VS Code로 자동 복귀하며, 패널에 입력창이 활성화됩니다.</li>
+          <li>입력창에 첫 메시지를 보내 정상 작동을 확인합니다.</li>
+        </ol>
+
+        <div class="notice">
+          <span class="label">참고</span>
+          <strong>Anthropic Console</strong>은 API 사용량 기반 과금이고, <strong>Bedrock/Foundry/Vertex</strong>는 AWS·Azure·GCP를 통한 기업 인증 방식입니다.
+          개인 구독자라면 첫 번째 옵션이면 충분합니다.
+        </div>
+      </div>
+
+      <div class="actions" style="margin-top:16px;">
+        <a class="btn btn-outline" href="https://docs.claude.com/en/docs/claude-code/quickstart" target="_blank" rel="noopener">
+          공식 사용 가이드 <span class="ext">↗</span>
+        </a>
+      </div>
+    </section>
+
+    <section class="intro" style="margin-top:28px;">
+      <p class="intro-title">여기서부터는 선택 도구</p>
+      <p class="intro-sub" style="margin-bottom:0;">위 4단계로 Claude Code 사용 준비는 끝났습니다. 아래는 더 풍부하게 쓰기 위한 보조 도구로, 미리 설치하고 싶다면 참고하세요.</p>
+    </section>
+
+    <!-- 5 -->
+    <section class="step">
+      <div class="step-head">
+        <h2 class="step-title">5. Node.js 설치</h2>
+        <span class="pill">선택 단계</span>
+      </div>
+      <p class="step-desc">
+        일부 명령어·기능을 쓸 때 Node.js가 필요합니다. <strong>LTS(v18 이상)</strong> 버전을 받아두면 매끄럽습니다.
       </p>
       <div class="notice">
         <span class="label">⚠ 확인</span>
@@ -891,26 +1080,49 @@
       </div>
     </section>
 
-    <!-- 2 -->
+    <!-- 6 -->
     <section class="step">
       <div class="step-head">
-        <h2 class="step-title">2. Git 설치</h2>
-        <span class="pill">필수</span>
+        <h2 class="step-title">6. Git 설치</h2>
+        <span class="pill">선택 단계</span>
       </div>
-      <p class="step-desc">
-        버전 관리를 위한 Git을 설치합니다. 설치 후 터미널에서 <code>git --version</code>으로 정상 설치를 확인하세요.
+      <p class="step-desc win-only">
+        버전 관리를 위한 Git을 설치합니다. 아래 버튼으로 설치 파일을 받아 기본 옵션으로 설치하세요. 설치 후 명령 프롬프트에서 <code>git --version</code>으로 확인합니다.
       </p>
-      <div class="actions">
-        <a class="btn btn-filled" href="https://git-scm.com/" target="_blank" rel="noopener">
-          Git 다운로드 <span class="ext">↗</span>
+      <p class="step-desc mac-only">
+        macOS는 별도 설치 파일을 받을 필요 없이 <strong>Xcode Command Line Tools</strong>를 한 줄 명령어로 받는 방식이 가장 간단합니다. (Homebrew·MacPorts 등 사전 설치 불필요)
+      </p>
+
+      <div class="actions win-only">
+        <a class="btn btn-filled" href="https://git-scm.com/downloads/win" target="_blank" rel="noopener">
+          Git 다운로드 (Windows) <span class="ext">↗</span>
         </a>
+      </div>
+
+      <div class="substep mac-only">
+        <p class="substep-title">Terminal에서 한 줄 설치</p>
+        <ol>
+          <li>Spotlight(<span class="kbd">Cmd</span> + <span class="kbd">Space</span>)에서 <code>터미널</code> 또는 <code>Terminal</code>을 입력해 실행합니다.</li>
+          <li>아래 명령어를 붙여 넣고 <span class="kbd">Enter</span>를 누릅니다.
+            <div style="margin-top:6px;"><code>xcode-select --install</code></div>
+          </li>
+          <li>팝업이 뜨면 <strong>설치</strong>를 누르고 약관에 동의합니다. (몇 분 소요)</li>
+          <li>설치가 끝나면 터미널에 <code>git --version</code>을 입력해 버전이 출력되는지 확인합니다.</li>
+        </ol>
+
+        <div class="notice">
+          <span class="label">참고</span>
+          git-scm.com/downloads/mac 페이지에는 Homebrew·MacPorts·Binary installer 등 여러 방식이 나오지만,
+          <strong>일반 사용자는 위 <code>xcode-select --install</code> 한 줄이면 충분합니다.</strong>
+          Homebrew를 이미 쓰고 있다면 <code>brew install git</code>로 최신 버전을 받는 것도 좋습니다.
+        </div>
       </div>
     </section>
 
-    <!-- 3 -->
+    <!-- 7 -->
     <section class="step">
       <div class="step-head">
-        <h2 class="step-title">3. Python 설치</h2>
+        <h2 class="step-title">7. Python 설치</h2>
         <span class="pill">선택 단계</span>
       </div>
       <p class="step-desc win-only">
@@ -927,189 +1139,6 @@
       </div>
     </section>
 
-    <!-- 4 -->
-    <section class="step">
-      <div class="step-head">
-        <h2 class="step-title">4. VS Code 설치</h2>
-        <span class="pill">필수</span>
-      </div>
-      <p class="step-desc win-only">
-        Claude Code를 실행할 코드 에디터입니다. <strong>인스톨러(.exe)</strong> 실행 시
-        <strong>"Add to PATH"</strong> 옵션은 반드시 체크 후 진행해주세요.
-      </p>
-      <p class="step-desc mac-only">
-        Claude Code를 실행할 코드 에디터입니다. 다운로드 페이지에서
-        <strong>Apple Silicon / Intel</strong> 칩셋에 맞는 <strong>.zip</strong> 파일을 받아
-        압축을 풀고 <strong>Visual Studio Code.app</strong>을 <strong>Applications</strong> 폴더로
-        드래그하면 설치 완료입니다.
-      </p>
-      <div class="actions">
-        <a class="btn btn-filled" href="https://code.visualstudio.com/Download" target="_blank" rel="noopener">
-          VS Code 다운로드 <span class="ext">↗</span>
-        </a>
-      </div>
-    </section>
-
-    <!-- 5 -->
-    <section class="step">
-      <div class="step-head">
-        <h2 class="step-title">5. VS Code 환경 설정</h2>
-        <span class="pill">선택 단계</span>
-      </div>
-      <p class="step-desc">
-        한국어 언어팩과 컬러 테마를 설정하면 화면이 더 편해집니다.
-      </p>
-
-      <div class="substep">
-        <p class="substep-title">한국어 언어팩 설치</p>
-        <ol>
-          <li>VS Code 왼쪽 사이드바의 <strong>확장(Extensions)</strong> 아이콘을 클릭합니다. <span class="win-only"><span class="kbd">Ctrl</span></span><span class="mac-only"><span class="kbd">Cmd</span></span> + <span class="kbd">Shift</span> + <span class="kbd">X</span></li>
-          <li>검색창에 <code>Korean</code>을 입력합니다.</li>
-          <li>아래와 같은 항목을 찾아 <strong>Install</strong> 버튼을 누릅니다.</li>
-        </ol>
-
-        <div class="ext-preview">
-          <img src="https://MS-CEINTL.gallerycdn.vsassets.io/extensions/ms-ceintl/vscode-language-pack-ko/latest/Microsoft.VisualStudio.Services.Icons.Default"
-               alt="Korean Language Pack for Visual Studio Code"
-               onerror="this.onerror=null;this.src='https://MS-CEINTL.gallerycdn.vsassets.io/extensions/ms-ceintl/vscode-language-pack-ko/1.118.2026050120/1777668324417/Microsoft.VisualStudio.Services.Icons.Default';" />
-          <div class="ext-preview-text">
-            <span class="ext-preview-name">Korean Language Pack for Visual Studio Code</span>
-            <span class="ext-preview-pub">제작자 <strong>Microsoft</strong></span>
-          </div>
-        </div>
-
-        <ol start="4" style="margin-top:10px;">
-          <li>오른쪽 아래 안내에 따라 <strong>Restart</strong>를 눌러 VS Code를 다시 시작합니다.</li>
-        </ol>
-      </div>
-
-      <div class="substep">
-        <p class="substep-title">컬러 테마 변경</p>
-        <ol>
-          <li>VS Code 상단 가운데 검색창을 클릭하거나 <span class="win-only"><span class="kbd">Ctrl</span></span><span class="mac-only"><span class="kbd">Cmd</span></span> + <span class="kbd">Shift</span> + <span class="kbd">P</span>를 누릅니다.</li>
-          <li>검색창에 <code>&gt;color theme</code>를 입력하고 <strong>기본 설정: 색 테마(Preferences: Color Theme)</strong>를 선택합니다.</li>
-          <li>방향키 ↑↓로 미리보기를 확인하고 마음에 드는 테마에서 <span class="kbd">Enter</span>를 눌러 적용합니다.</li>
-        </ol>
-      </div>
-    </section>
-
-    <!-- 6 -->
-    <section class="step">
-      <div class="step-head">
-        <h2 class="step-title">6. Claude Code 설치</h2>
-        <span class="pill">필수</span>
-      </div>
-      <p class="step-desc">
-        VS Code 확장 프로그램으로 Claude Code를 설치합니다.
-      </p>
-
-      <div class="substep">
-        <p class="substep-title">확장 프로그램 설치</p>
-        <ol>
-          <li>VS Code 왼쪽 사이드바의 <strong>확장(Extensions)</strong> 아이콘을 클릭합니다. <span class="win-only"><span class="kbd">Ctrl</span></span><span class="mac-only"><span class="kbd">Cmd</span></span> + <span class="kbd">Shift</span> + <span class="kbd">X</span></li>
-          <li>검색창에 <code>Claude Code</code>를 입력합니다.</li>
-          <li>아래와 같은 항목을 찾아 <strong>Install</strong> 버튼을 누릅니다.</li>
-        </ol>
-
-        <div class="ext-preview">
-          <img src="https://anthropic.gallerycdn.vsassets.io/extensions/anthropic/claude-code/latest/Microsoft.VisualStudio.Services.Icons.Default"
-               alt="Claude Code for VS Code"
-               onerror="this.onerror=null;this.src='https://anthropic.gallerycdn.vsassets.io/extensions/anthropic/claude-code/2.1.128/1777935814013/Microsoft.VisualStudio.Services.Icons.Default';" />
-          <div class="ext-preview-text">
-            <span class="ext-preview-name">Claude Code for VS Code</span>
-            <span class="ext-preview-pub">제작자 <strong>Anthropic</strong></span>
-          </div>
-        </div>
-
-        <ol start="4" style="margin-top:10px;">
-          <li>설치가 끝나면 확장 페이지에서 <strong>자동 업데이트</strong> 체크박스를 켜둡니다. (아래 안내 참고)</li>
-          <li>설치가 끝나면 VS Code 오른쪽에 Claude Code 패널이 자동으로 열립니다.</li>
-        </ol>
-
-        <div class="notice">
-          <span class="label">중요</span>
-          Claude Code는 업데이트가 잦습니다. 확장 상세 페이지에서 아래 표시된
-          <strong>자동 업데이트</strong> 체크박스를 반드시 켜두세요.
-          꺼져 있으면 구버전에 머물러 일부 기능이 동작하지 않을 수 있습니다.
-
-          <div class="vsc-mock">
-            <span class="vsc-btn">사용 안 함<span class="chev"></span><span class="arrow">▾</span></span>
-            <span class="vsc-btn">제거<span class="chev"></span><span class="arrow">▾</span></span>
-            <span class="vsc-autoupdate">
-              <span class="vsc-checkbox">✓</span>
-              자동 업데이트
-              <span class="vsc-gear">⚙</span>
-            </span>
-          </div>
-          <div class="vsc-caption">↑ 확장 상세 페이지에서 이 영역을 찾으세요</div>
-        </div>
-      </div>
-    </section>
-
-    <!-- 7 -->
-    <section class="step">
-      <div class="step-head">
-        <h2 class="step-title">7. Claude Code 실행 및 계정 연결</h2>
-        <span class="pill">마지막</span>
-      </div>
-      <p class="step-desc">
-        설치한 확장 프로그램에서 Claude Code 패널을 열고 Claude 계정으로 로그인합니다.
-      </p>
-
-      <div class="substep">
-        <p class="substep-title">Claude Code 패널 열기</p>
-        <ol>
-          <li>VS Code 오른쪽 위 또는 사이드바에 생긴 <strong>Claude</strong> 아이콘을 클릭합니다.</li>
-          <li>패널이 열리지 않는다면 <span class="win-only"><span class="kbd">Ctrl</span></span><span class="mac-only"><span class="kbd">Cmd</span></span> + <span class="kbd">Shift</span> + <span class="kbd">P</span>를 누르고
-              <code>&gt;Claude Code: Open</code>을 검색해 실행합니다.</li>
-        </ol>
-      </div>
-
-      <div class="substep">
-        <p class="substep-title">Claude 계정 연결</p>
-        <p style="font-size:13.5px; color: var(--muted); margin:0 0 4px; line-height:1.7;">
-          패널이 처음 열리면 아래와 같은 로그인 화면이 표시됩니다.
-          <strong style="color: var(--text);">Claude Pro·Team·Enterprise 구독자라면 맨 위 주황색 <em>Claude.ai Subscription</em> 버튼</strong>을 누르세요.
-        </p>
-
-        <div class="login-panel">
-          <p class="login-title">Welcome to Claude Code</p>
-          <p class="login-desc">Claude Code can be used with your Claude subscription or billed based on API usage through your Console account.</p>
-          <p class="login-q">How do you want to log in?</p>
-
-          <div class="login-btn primary">Claude.ai Subscription</div>
-          <p class="login-caption">Use your Claude Pro, Team, or Enterprise subscription</p>
-
-          <div class="login-btn outline">Anthropic Console</div>
-          <p class="login-caption">Pay for API usage through your Console account</p>
-
-          <div class="login-btn outline">Bedrock, Foundry, or Vertex <span class="ext">↗</span></div>
-          <p class="login-caption">Instructions on how to use API keys or third-party providers.</p>
-
-          <div class="login-foot">Prefer the terminal experience? Run <code>claude</code> in terminal</div>
-        </div>
-        <div class="vsc-caption" style="text-align:left;">↑ 확장 패널에 처음 표시되는 로그인 화면</div>
-
-        <ol style="margin-top:14px;">
-          <li>맨 위 <strong>Claude.ai Subscription</strong>(주황색) 버튼을 누릅니다.</li>
-          <li>브라우저가 열리면 Claude 계정으로 로그인하고 권한을 승인합니다.</li>
-          <li>인증이 완료되면 VS Code로 자동 복귀하며, 패널에 입력창이 활성화됩니다.</li>
-          <li>입력창에 첫 메시지를 보내 정상 작동을 확인합니다.</li>
-        </ol>
-
-        <div class="notice">
-          <span class="label">참고</span>
-          <strong>Anthropic Console</strong>은 API 사용량 기반 과금이고, <strong>Bedrock/Foundry/Vertex</strong>는 AWS·Azure·GCP를 통한 기업 인증 방식입니다.
-          개인 구독자라면 첫 번째 옵션이면 충분합니다.
-        </div>
-      </div>
-
-      <div class="actions" style="margin-top:16px;">
-        <a class="btn btn-outline" href="https://docs.claude.com/en/docs/claude-code/quickstart" target="_blank" rel="noopener">
-          공식 사용 가이드 <span class="ext">↗</span>
-        </a>
-      </div>
-    </section>
   </div>
 
   <script>
